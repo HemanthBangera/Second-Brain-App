@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.masonry-column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
