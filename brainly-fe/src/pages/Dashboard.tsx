@@ -24,7 +24,7 @@ export function Dashboard(){
         768: 1, // 1 column for smaller screens
       };
     return(
-        <div className="flex">  
+        <div className="flex h-screen">  
             <SideBar/>
             <div className="bg-purple-50 w-full">
                 <div className="flex w-full justify-end ">
@@ -49,6 +49,7 @@ export function Dashboard(){
                     </div>
                 </div>
                 <CreateContentModal open={openModal} onClose={()=>setopenModal(false)}/>
+                <div className="h-[calc(80%+80px)] overflow-y-auto">
                 <Masonry
                 breakpointCols={breakpointColumnsObj}
                 className="flex gap-4 p-4"
@@ -60,6 +61,7 @@ export function Dashboard(){
                         type={type}/>
                     ))}
                 </Masonry>
+                </div>
             </div>
         </div>
     )

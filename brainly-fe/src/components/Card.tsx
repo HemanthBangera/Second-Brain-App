@@ -62,7 +62,7 @@ export function Card(props:CardProps) {
             <>
                         <blockquote className="twitter-tweet">
                             <a href={props.link.replace("x.com", "twitter.com")}></a>
-                        </blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        </blockquote><script async src="https://platform.twitter.com/widgets.js" char-set="utf-8"></script>
                         </>
 }
           </div>
