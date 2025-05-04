@@ -144,7 +144,7 @@ app.delete("/api/v1/content", userMiddleware, async (req, res) => {
   try {
     await Content.deleteMany({
       userId,
-      contentId,
+      _id:contentId,
     });
     res.status(200).json({
       message: "Content deleted",

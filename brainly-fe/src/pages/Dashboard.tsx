@@ -55,8 +55,10 @@ export function Dashboard(){
                 className="flex gap-4 p-4"
                 columnClassName="masonry-column"
                 >
-                    {contents.map(({type,link,title})=>(
-                        <Card title={title}
+                    {contents.map(({_id,type,link,title})=>(
+                        <Card key={_id}
+                         id={_id}
+                         title={title}
                          link={link} 
                         type={type}/>
                     ))}

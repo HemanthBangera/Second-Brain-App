@@ -153,7 +153,7 @@ app.delete("/api/v1/content", userMiddleware_1.userMiddleware, (req, res) => __a
     try {
         yield db_1.Content.deleteMany({
             userId,
-            contentId,
+            _id: contentId,
         });
         res.status(200).json({
             message: "Content deleted",
