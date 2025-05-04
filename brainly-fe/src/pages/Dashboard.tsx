@@ -1,5 +1,4 @@
-
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import { Button } from "../components/Button"
 import { PlusIcon } from "../icons/PlusIcon"
 import { ShareIcon } from "../icons/ShareIcon"
@@ -12,10 +11,18 @@ import { UseContent } from "../hooks/UseContent"
 import axios from "axios"
 import { BACKEND_URL } from "../config"
 import { FRONTEND_URL } from "../config"
+import { BrainIconLarge } from "../icons/brainDashboard"
 
 export function Dashboard(){
     const {contents,refresh} = UseContent();
     const [openModal,setopenModal] = useState(false);
+    const [noContent,setNoContent] = useState<Boolean>();
+
+    useEffect(()=>{
+        setNoContent(contents.length === 0)
+    },[contents])
+
+
 
     const breakpointColumnsObj = {
         default: 4, // 3 columns for larger screens
@@ -27,7 +34,7 @@ export function Dashboard(){
         <div className="flex h-screen">  
             <SideBar/>
             <div className="bg-purple-50 w-full">
-                <div className="flex w-full justify-end ">
+                <div className="flex w-full justify-end">
                     <div className="m-2">
                        <Button staricon={<PlusIcon/>} text={"Add Content"} variants="primary" onClick={()=>{setopenModal(true)}}/>
                     </div>
@@ -49,7 +56,26 @@ export function Dashboard(){
                     </div>
                 </div>
                 <CreateContentModal open={openModal} onClose={()=>setopenModal(false)}/>
-                <div className="h-[calc(80%+80px)] overflow-y-auto">
+                <div className={`h-[calc(80%+80px)] overflow-y-auto ${noContent?'flex justify-center items-center':''}`}>
+
+                {noContent && 
+
+                    <div className="w-4/5 border-2 border-dashed border-gray-300 flex flex-col justify-center items-center py-10 rounded-2xl bg-white shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                    <div className="mb-6 flex justify-center">
+                        <BrainIconLarge />
+                    </div>
+                    <h1 className="text-3xl md:text-4xl font-semibold text-gray-600 mb-2 text-center">
+                        No Content Yet
+                    </h1>
+                    <p className="text-sm text-gray-500 mt-2 text-center">
+                     Start by clicking the <span className="font-semibold text-purple-600">Add Content</span> button above.
+                     </p>
+                  
+                    </div>
+
+                }
+
+                {!noContent &&
                 <Masonry
                 breakpointCols={breakpointColumnsObj}
                 className="flex gap-4 p-4"
@@ -63,6 +89,7 @@ export function Dashboard(){
                         type={type}/>
                     ))}
                 </Masonry>
+                }
                 </div>
             </div>
         </div>
