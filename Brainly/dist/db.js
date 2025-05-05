@@ -24,7 +24,7 @@ const TagSchema = new mongoose_1.default.Schema({
         unique: true
     }
 });
-const contentTypes = ['youtube', 'twitter', 'article', 'course'];
+const contentTypes = ['youtube', 'twitter', 'linkedin', 'instagram', 'reddit'];
 const ContentSchema = new mongoose_1.default.Schema({
     link: { type: String, required: true },
     type: { type: String, enum: contentTypes, required: true },

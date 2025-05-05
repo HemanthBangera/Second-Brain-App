@@ -22,7 +22,7 @@ const TagSchema = new mongoose.Schema({
 }
 })
 
-const contentTypes = ['youtube','twitter','article','course'];
+const contentTypes = ['youtube','twitter','linkedin','instagram','reddit'];
 
 const ContentSchema =new mongoose.Schema({
     link:{type:String, required:true},
