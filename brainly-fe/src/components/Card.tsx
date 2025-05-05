@@ -4,6 +4,7 @@ import { BACKEND_URL } from "../config"
 import { TrashCan } from "../icons/trashCan";
 import { UseContent } from "../hooks/UseContent";
 import { useState } from "react";
+import RedditEmbed from "../postEmbed/reddit";
 
 interface CardProps{
   id:string,
@@ -102,8 +103,16 @@ export function Card(props:CardProps) {
                         <blockquote className="twitter-tweet">
                             <a href={props.link.replace("x.com", "twitter.com")}></a>
                         </blockquote><script async src="https://platform.twitter.com/widgets.js" char-set="utf-8"></script>
-                        </>
-}
+            </>
+            }
+
+            {props.type === "reddit" &&
+            <>
+                        <RedditEmbed postUrl={props.link}/>
+            </>
+            }
+
+            
           </div>
       </div>
     </div>

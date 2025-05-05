@@ -13,7 +13,8 @@ interface createContentProps{
 
 enum ContentType{
     Youtube="youtube",
-    Twitter="twitter"
+    Twitter="twitter",
+    Reddit="reddit",
 }
 
 
@@ -63,6 +64,7 @@ export function CreateContentModal(props:createContentProps){
                                 <div className="flex gap-1 justify-center p-2">
                                     <Button variants={type === ContentType.Youtube?"primary":"secondary"} text={"Youtube"} onClick={()=>setType(ContentType.Youtube)}/>
                                     <Button variants={type === ContentType.Twitter?"primary":"secondary"} text={"Twitter"} onClick={()=>setType(ContentType.Twitter)}/>
+                                    <Button variants={type === ContentType.Reddit?"primary":"secondary"} text={"Reddit"} onClick={()=>setType(ContentType.Reddit)}/>
                                 </div>
                                 <div className="flex justify-center">
                                     <Button text={"Submit"} variants="tertiary" onClick={addContent}/>
