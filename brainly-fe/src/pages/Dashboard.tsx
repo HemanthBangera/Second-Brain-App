@@ -17,10 +17,13 @@ export function Dashboard(){
     const {contents,refresh} = UseContent();
     const [openModal,setopenModal] = useState(false);
     const [noContent,setNoContent] = useState<Boolean>();
+    const [selectedItems,setSelectedItems] = useState<String|null>(null);
+
+    const filteredContent = selectedItems? contents.filter( content => selectedItems == content.type):contents;
 
     useEffect(()=>{
-        setNoContent(contents.length === 0)
-    },[contents])
+        setNoContent(filteredContent.length === 0)
+    },[filteredContent])
 
 
 
@@ -32,7 +35,7 @@ export function Dashboard(){
       };
     return(
         <div className="flex h-screen">  
-            <SideBar/>
+            <SideBar setSelectedItems={setSelectedItems}/>
             <div className="bg-purple-50 w-full">
                 <div className="flex w-full justify-end">
                     <div className="m-2">
@@ -81,7 +84,7 @@ export function Dashboard(){
                 className="flex gap-4 p-4"
                 columnClassName="masonry-column"
                 >
-                    {contents.map(({_id,type,link,title})=>(
+                    {filteredContent.map(({_id,type,link,title})=>(
                         <Card key={_id}
                          id={_id}
                          title={title}
